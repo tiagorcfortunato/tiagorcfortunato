@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiago Fortunato — Backend Developer</title>
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #0c0c0e;
+            --bg-card: #141416;
+            --bg-card-hover: #1a1a1e;
+            --border: #222226;
+            --text: #e8e8ea;
+            --text-muted: #88888f;
+            --accent: #22d3a0;
+            --accent-dim: rgba(34, 211, 160, 0.08);
+            --accent-dim2: rgba(34, 211, 160, 0.2);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        ::-webkit-scrollbar { width: 3px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+
+        /* Nav */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.125rem 2rem;
+            background: rgba(12, 12, 14, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-logo {
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: -0.02em;
+            color: var(--text);
+        }
+
+        .nav-logo span { color: var(--accent); }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: var(--text); }
+
+        /* Layout */
+        main {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section { padding: 5rem 0; }
+
+        .section-label {
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.875rem;
+        }
+
+        .section-title {
+            font-size: 1.875rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 2.5rem;
+        }
+
+        .divider {
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* Hero */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-top: 4rem;
+        }
+
+        .hero-location {
+            font-size: 0.875rem;
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 1.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.625rem;
+        }
+
+        .hero-location::before {
+            content: '';
+            display: inline-block;
+            width: 1.75rem;
+            height: 1px;
+            background: var(--accent);
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 1.08;
+            margin-bottom: 1.5rem;
+        }
+
+        h1 .muted { color: var(--text-muted); }
+
+        .hero-desc {
+            font-size: 1.0625rem;
+            color: var(--text-muted);
+            max-width: 500px;
+            margin-bottom: 2rem;
+            line-height: 1.75;
+        }
+
+        .hero-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 2.5rem;
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 0.25rem 0.75rem;
+            border-radius: 100px;
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            background: var(--bg-card);
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .tag:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .tag.accent {
+            border-color: var(--accent-dim2);
+            color: var(--accent);
+            background: var(--accent-dim);
+        }
+
+        .hero-actions { display: flex; gap: 0.875rem; flex-wrap: wrap; }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.6rem 1.25rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #0c0c0e;
+        }
+
+        .btn-primary:hover {
+            background: #1dc494;
+            transform: translateY(-1px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--text-muted);
+            transform: translateY(-1px);
+        }
+
+        /* About */
+        .about-text {
+            font-size: 1.0625rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            max-width: 640px;
+        }
+
+        .about-text strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+            gap: 0.875rem;
+        }
+
+        .skill-group {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem;
+            transition: border-color 0.25s;
+        }
+
+        .skill-group:hover { border-color: var(--accent-dim2); }
+
+        .skill-group-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+        }
+
+        .skill-items { display: flex; flex-wrap: wrap; gap: 0.375rem; }
+
+        .skill-item {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 0.2rem 0.5rem;
+        }
+
+        /* Projects */
+        .projects-grid { display: grid; gap: 0.875rem; }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: border-color 0.25s, background 0.25s, transform 0.25s;
+        }
+
+        .project-card:hover {
+            border-color: var(--accent-dim2);
+            background: var(--bg-card-hover);
+            transform: translateY(-2px);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.625rem;
+            gap: 1rem;
+        }
+
+        .project-name {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .project-year {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
+
+        .project-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .project-bullets {
+            list-style: none;
+            margin-bottom: 1rem;
+        }
+
+        .project-bullets li {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            padding: 0.2rem 0 0.2rem 1.125rem;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .project-bullets li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-size: 0.7rem;
+            top: 0.35rem;
+        }
+
+        .project-tools { display: flex; flex-wrap: wrap; gap: 0.375rem; }
+
+        .project-links {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .project-link {
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            text-decoration: none;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 0.2rem 0.625rem;
+            transition: color 0.2s, border-color 0.2s;
+        }
+
+        .project-link:hover {
+            color: var(--accent);
+            border-color: var(--accent-dim2);
+        }
+
+        .project-link.live {
+            color: var(--accent);
+            border-color: var(--accent-dim2);
+            background: var(--accent-dim);
+        }
+
+        .project-link.live:hover {
+            background: rgba(34, 211, 160, 0.15);
+        }
+
+        /* Timeline */
+        .timeline { display: flex; flex-direction: column; }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 96px 1fr;
+            gap: 1.5rem;
+            position: relative;
+            padding-bottom: 2rem;
+        }
+
+        .timeline-item:last-child { padding-bottom: 0; }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 103px;
+            top: 0.5rem;
+            bottom: 0;
+            width: 1px;
+            background: var(--border);
+        }
+
+        .timeline-item:last-child::before { display: none; }
+
+        .timeline-date {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-align: right;
+            padding-top: 0.15rem;
+            line-height: 1.4;
+        }
+
+        .timeline-content {
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            left: -0.3rem;
+            top: 0.45rem;
+            width: 0.6rem;
+            height: 0.6rem;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 2px solid var(--bg);
+        }
+
+        .timeline-role {
+            font-size: 0.9375rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.15rem;
+        }
+
+        .timeline-company {
+            font-size: 0.85rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-desc {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .timeline-desc ul { list-style: none; margin-top: 0.375rem; }
+
+        .timeline-desc ul li {
+            padding: 0.15rem 0 0.15rem 1rem;
+            position: relative;
+        }
+
+        .timeline-desc ul li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-size: 0.68rem;
+            top: 0.3rem;
+        }
+
+        /* Languages */
+        .languages { display: flex; gap: 0.875rem; flex-wrap: wrap; }
+
+        .language-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1rem 1.25rem;
+            min-width: 140px;
+            transition: border-color 0.25s;
+        }
+
+        .language-card:hover { border-color: var(--accent-dim2); }
+
+        .language-name {
+            font-size: 0.9375rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.2rem;
+        }
+
+        .language-level { font-size: 0.8125rem; color: var(--accent); }
+
+        /* Contact */
+        .contact-links { display: flex; gap: 0.875rem; flex-wrap: wrap; }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            border-top: 1px solid var(--border);
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity 0.65s ease, transform 0.65s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile */
+        @media (max-width: 620px) {
+            nav { padding: 1rem 1.25rem; }
+            .nav-links { gap: 1.25rem; }
+            main { padding: 0 1.25rem; }
+            section { padding: 4rem 0; }
+            .timeline-item {
+                grid-template-columns: 1fr;
+                gap: 0.2rem;
+            }
+            .timeline-item::before { display: none; }
+            .timeline-date { text-align: left; }
+            .timeline-content { padding-left: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-logo">TF<span>.</span></div>
+    <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+
+<main>
+
+    <!-- Hero -->
+    <section id="hero">
+        <div class="hero-location">Berlin, Germany</div>
+        <h1>Tiago Fortunato<br><span class="muted">Backend Developer</span></h1>
+        <div class="hero-tags">
+            <span class="tag accent">Python</span>
+            <span class="tag accent">FastAPI</span>
+            <span class="tag accent">REST APIs</span>
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">Docker</span>
+            <span class="tag">GitHub Actions</span>
+        </div>
+        <p class="hero-desc">
+            Building production-grade backend systems with clean architecture, automated testing, and CI/CD pipelines. Background in Mechanical Engineering — structured thinking applied to software.
+        </p>
+        <div class="hero-actions">
+            <a href="mailto:tifortunato.eng@gmail.com" class="btn btn-primary">Get in touch</a>
+            <a href="https://linkedin.com/in/tiagorcfortunato" target="_blank" class="btn btn-outline">LinkedIn</a>
+            <a href="https://github.com/tiagorcfortunato" target="_blank" class="btn btn-outline">GitHub</a>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- About -->
+    <section id="about">
+        <div class="fade-in">
+            <p class="section-label">About</p>
+            <h2 class="section-title">Who I am</h2>
+            <p class="about-text">
+                Backend Developer with hands-on experience building <strong>REST APIs and data processing systems</strong> using Python and FastAPI.
+                I develop production-oriented systems with modular architecture, PostgreSQL integration, automated testing, and Docker-based deployment.<br><br>
+                My background spans <strong>Software Engineering and Mechanical Engineering</strong>, giving me a strong problem-solving mindset and the ability to think in systems.
+                I've lived and studied in Brazil, Germany, and am currently based in <strong>Berlin</strong> — I bring adaptability and cross-cultural communication to every team I join.
+            </p>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Skills -->
+    <section id="skills">
+        <div class="fade-in">
+            <p class="section-label">Skills</p>
+            <h2 class="section-title">What I work with</h2>
+            <div class="skills-grid">
+                <div class="skill-group">
+                    <div class="skill-group-label">Programming</div>
+                    <div class="skill-items">
+                        <span class="skill-item">Python</span>
+                        <span class="skill-item">SQL</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <div class="skill-group-label">Backend</div>
+                    <div class="skill-items">
+                        <span class="skill-item">FastAPI</span>
+                        <span class="skill-item">REST APIs</span>
+                        <span class="skill-item">PostgreSQL</span>
+                        <span class="skill-item">Pydantic</span>
+                        <span class="skill-item">Alembic</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <div class="skill-group-label">DevOps & Tools</div>
+                    <div class="skill-items">
+                        <span class="skill-item">Docker</span>
+                        <span class="skill-item">GitHub Actions</span>
+                        <span class="skill-item">CI/CD</span>
+                        <span class="skill-item">Git</span>
+                        <span class="skill-item">Postman</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <div class="skill-group-label">Testing & Data</div>
+                    <div class="skill-items">
+                        <span class="skill-item">Pytest</span>
+                        <span class="skill-item">Pandas</span>
+                        <span class="skill-item">Scikit-learn</span>
+                        <span class="skill-item">JSON</span>
+                        <span class="skill-item">CSV</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Projects -->
+    <section id="projects">
+        <div class="fade-in">
+            <p class="section-label">Projects</p>
+            <h2 class="section-title">What I've built</h2>
+            <div class="projects-grid">
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="project-name">Inspection Management API</span>
+                        <span class="project-year">2026 — present</span>
+                    </div>
+                    <p class="project-desc">Production REST API for managing infrastructure inspections — road damage reports, severity classification, and repair status tracking. Fully deployed with a live frontend dashboard.</p>
+                    <ul class="project-bullets">
+                        <li>JWT authentication with per-user data isolation</li>
+                        <li>Status lifecycle: reported → verified → scheduled → repaired</li>
+                        <li>Advanced filtering, pagination, and sorting on all endpoints</li>
+                        <li>31 automated tests with Pytest; CI/CD via GitHub Actions</li>
+                        <li>Containerized with Docker and deployed on Render</li>
+                    </ul>
+                    <div class="project-tools">
+                        <span class="tag accent">FastAPI</span>
+                        <span class="tag">PostgreSQL</span>
+                        <span class="tag">Docker</span>
+                        <span class="tag">Pytest</span>
+                        <span class="tag">GitHub Actions</span>
+                        <span class="tag">SQLAlchemy</span>
+                        <span class="tag">Alembic</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://inspection-management-api.onrender.com/docs" target="_blank" class="project-link live">Live API Docs</a>
+                        <a href="https://inspection-dashboard.vercel.app" target="_blank" class="project-link live">Dashboard</a>
+                        <a href="https://github.com/tiagorcfortunato/inspection-management-api" target="_blank" class="project-link">GitHub</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="project-name">Road Hazard Detection — MSc Thesis</span>
+                        <span class="project-year">2026</span>
+                    </div>
+                    <p class="project-desc">Two-stage hybrid pipeline combining YOLOv8-based object detection with a rule-based expert system to detect road surface damage and automatically prioritize maintenance actions. Trained and evaluated on the RDD2022 benchmark dataset.</p>
+                    <ul class="project-bullets">
+                        <li>Conducted 4 controlled experiments (EXP1–EXP4) varying model capacity, input resolution, and training length — best config (YOLOv8s): mAP50 0.663, Precision 0.694, Recall 0.604</li>
+                        <li>Built a rule-based expert system with geometric filtering, continuous severity scoring, and quantile-based prioritization (LOW / MEDIUM / HIGH)</li>
+                        <li>Post-processing reduced noisy detections by 31.2% (8304 → 5711) while preserving structurally relevant defects</li>
+                        <li>Designed for interpretability: every prioritization decision traceable to explicit rules — no black boxes</li>
+                    </ul>
+                    <div class="project-tools">
+                        <span class="tag accent">Python</span>
+                        <span class="tag">YOLOv8</span>
+                        <span class="tag">PyTorch</span>
+                        <span class="tag">RDD2022</span>
+                        <span class="tag">Google Colab</span>
+                        <span class="tag">Git</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="project-name">Vehicle Health Monitor & Fault Predictor</span>
+                        <span class="project-year">2025</span>
+                    </div>
+                    <p class="project-desc">End-to-end ML pipeline analyzing vehicle sensor data (temperature, vibration, oil pressure, RPM) to predict failures before they occur.</p>
+                    <ul class="project-bullets">
+                        <li>Multi-stage pipeline: data generation → ETL → EDA → ML → dashboard</li>
+                        <li>Random Forest classifier with imbalanced data handling (99.9% accuracy)</li>
+                        <li>Live Streamlit dashboard for real-time vehicle condition monitoring</li>
+                    </ul>
+                    <div class="project-tools">
+                        <span class="tag accent">Python</span>
+                        <span class="tag">Pandas</span>
+                        <span class="tag">Scikit-learn</span>
+                        <span class="tag">Streamlit</span>
+                        <span class="tag">NumPy</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/tiagorcfortunato/Capstone_VehicleHealth" target="_blank" class="project-link">GitHub</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="project-name">Matrix Recommendation System</span>
+                        <span class="project-year">2025</span>
+                    </div>
+                    <p class="project-desc">Recommendation engine using matrix multiplication and Python multithreading to simulate scalable user-product scoring — with performance benchmarking between sequential and parallel execution.</p>
+                    <ul class="project-bullets">
+                        <li>Implemented S = U × P matrix scoring with score normalization</li>
+                        <li>Compared sequential vs. multithreaded performance with visual output</li>
+                        <li>Demonstrated threading tradeoffs: overhead vs. scalability at scale</li>
+                    </ul>
+                    <div class="project-tools">
+                        <span class="tag accent">Python</span>
+                        <span class="tag">NumPy</span>
+                        <span class="tag">Threading</span>
+                        <span class="tag">Matplotlib</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/tiagorcfortunato/matrix-recommendation-multithread" target="_blank" class="project-link">GitHub</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Experience -->
+    <section id="experience">
+        <div class="fade-in">
+            <p class="section-label">Experience</p>
+            <h2 class="section-title">Where I've worked</h2>
+            <div class="timeline">
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2024 — now</div>
+                    <div class="timeline-content">
+                        <div class="timeline-role">Event Staff</div>
+                        <div class="timeline-company">FARO Gruppe · Berlin, Germany</div>
+                        <div class="timeline-desc">
+                            Working in high-paced event environments, coordinating with teams and managers to ensure smooth operations. Strong attention to detail and reliability under pressure.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2019 — 2024</div>
+                    <div class="timeline-content">
+                        <div class="timeline-role">Project Manager</div>
+                        <div class="timeline-company">Fortunato Joias — Jewelry & Manufacturing · Brazil</div>
+                        <div class="timeline-desc">
+                            <ul>
+                                <li>Managed production and operational projects for a family-owned jewelry company with in-house casting and manufacturing, founded in the 1970s</li>
+                                <li>Coordinated production schedules, supplier relationships, and delivery deadlines across design-to-production cycles</li>
+                                <li>Improved reporting and documentation systems to increase operational visibility</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2018 — 2019</div>
+                    <div class="timeline-content">
+                        <div class="timeline-role">Engineering Intern — Logistics & Operations</div>
+                        <div class="timeline-company">Metalúrgica Besser · Rio de Janeiro, Brazil</div>
+                        <div class="timeline-desc">
+                            Supported logistics routines and operational planning. Managed shipment priorities and reduced delays through structured problem solving.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2016 — 2018</div>
+                    <div class="timeline-content">
+                        <div class="timeline-role">Co-Founder & German Teacher</div>
+                        <div class="timeline-company">Guide Idiomas · Rio de Janeiro, Brazil</div>
+                        <div class="timeline-desc">
+                            Co-founded a German language school. Created structured learning materials, tracked student progress, and managed scheduling and customer support.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Education -->
+    <section id="education">
+        <div class="fade-in">
+            <p class="section-label">Education</p>
+            <h2 class="section-title">Academic background</h2>
+            <div class="timeline">
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2024 — 2026</div>
+                    <div class="timeline-content">
+                        <div class="timeline-role">MSc Software Engineering</div>
+                        <div class="timeline-company">University of Europe for Applied Sciences · Berlin</div>
+                        <div class="timeline-desc">
+                            Focus: Software Testing, Automation, and applied Machine Learning.<br>
+                            Thesis: Computer Vision Object Detection (YOLO-based pipeline).
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2022 — 2023</div>
+                    <div class="timeline-content">
+                        <div class="timeline-role">Postgraduate — Railway Engineering</div>
+                        <div class="timeline-company">Faculdade UniBF · Brazil</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2021 — 2022</div>
+                    <div class="timeline-content">
+                        <div class="timeline-role">Postgraduate — Automation Engineering & Industrial Electronics</div>
+                        <div class="timeline-company">Faculdade UniBF · Brazil</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2014 — 2016</div>
+                    <div class="timeline-content">
+                        <div class="timeline-role">Exchange Student — Mechanical Engineering</div>
+                        <div class="timeline-company">Hochschule Wismar · Germany</div>
+                        <div class="timeline-desc">International academic exchange in Germany.</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2013 — 2018</div>
+                    <div class="timeline-content">
+                        <div class="timeline-role">BSc Mechanical Engineering</div>
+                        <div class="timeline-company">UERJ · Rio de Janeiro, Brazil</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Languages -->
+    <section id="languages">
+        <div class="fade-in">
+            <p class="section-label">Languages</p>
+            <h2 class="section-title">Communication</h2>
+            <div class="languages">
+                <div class="language-card">
+                    <div class="language-name">Portuguese</div>
+                    <div class="language-level">Native</div>
+                </div>
+                <div class="language-card">
+                    <div class="language-name">English</div>
+                    <div class="language-level">Fluent</div>
+                </div>
+                <div class="language-card">
+                    <div class="language-name">German</div>
+                    <div class="language-level">B2.2 — Improving</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Contact -->
+    <section id="contact">
+        <div class="fade-in">
+            <p class="section-label">Contact</p>
+            <h2 class="section-title">Let's talk</h2>
+            <p class="about-text" style="margin-bottom: 2rem;">
+                Open to Backend / Python Developer roles in Berlin and remote. Feel free to reach out.
+            </p>
+            <div class="contact-links">
+                <a href="mailto:tifortunato.eng@gmail.com" class="btn btn-primary">tifortunato.eng@gmail.com</a>
+                <a href="https://linkedin.com/in/tiagorcfortunato" target="_blank" class="btn btn-outline">LinkedIn</a>
+                <a href="https://github.com/tiagorcfortunato" target="_blank" class="btn btn-outline">GitHub</a>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    Tiago Fortunato · Berlin · 2026
+</footer>
+
+<script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
