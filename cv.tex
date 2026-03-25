@@ -1,0 +1,152 @@
+%% Tiago Fortunato — CV
+%% Updated 2026
+
+\documentclass[11pt,a4paper,sans]{moderncv}
+
+\moderncvstyle{banking}
+\moderncvcolor{blue}
+
+\usepackage[scale=0.82]{geometry}
+\setlength{\footskip}{136.00005pt}
+
+\ifxetexorluatex
+  \usepackage{fontspec}
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Ligatures=TeX}
+  \setmainfont{Latin Modern Roman}
+  \setsansfont{Latin Modern Sans}
+  \setmonofont{Latin Modern Mono}
+  \setmathfont{Latin Modern Math}
+\else
+  \usepackage[T1]{fontenc}
+  \usepackage{lmodern}
+\fi
+
+\usepackage[english]{babel}
+
+% Personal data
+\name{Tiago}{Fortunato}
+\title{\texorpdfstring{Backend Developer \\ Python $|$ FastAPI $|$ REST APIs}{Backend Developer | Python | FastAPI | REST APIs}}
+\address{Berlin, Germany}
+\phone[mobile]{+49~172~238~9909}
+\email{tifortunato.eng@gmail.com}
+\social[linkedin]{tiagorcfortunato}
+\social[github]{tiagorcfortunato}
+\homepage{tiagorcfortunato.vercel.app}
+\extrainfo{\href{https://leetcode.com/u/tiagofortunato/}{leetcode.com/u/tiagofortunato}}
+%\photo[100pt][0.4pt]{picture}
+
+\begin{document}
+\makecvtitle
+\vspace{-4mm}
+
+% -----------------------------------------------------------------------
+\section{Profile}
+% -----------------------------------------------------------------------
+\cvitem{}{Backend Developer specializing in Python and FastAPI, building production-grade REST APIs with clean architecture, automated testing, and CI/CD. MSc in Software Engineering (Berlin, 2026) with thesis on road hazard detection using YOLOv8 and a rule-based expert system. Background in Mechanical Engineering — structured, systems-level thinking applied to software. Trilingual (Portuguese, English, German B2). Seeking a Backend / Python Developer role in Berlin or remote.}
+
+
+% -----------------------------------------------------------------------
+\section{Skills}
+% -----------------------------------------------------------------------
+\cvitem{Languages}{Python, SQL}
+\cvitem{Backend}{FastAPI, REST APIs, SQLAlchemy, Pydantic, Alembic, JWT}
+\cvitem{Database}{PostgreSQL}
+\cvitem{DevOps}{Docker, GitHub Actions, CI/CD, Render, Vercel}
+\cvitem{Testing}{Pytest, Postman, API Testing}
+\cvitem{Data / ML}{Pandas, NumPy, Scikit-learn, PyTorch, YOLOv8, Computer Vision, Machine Learning, Streamlit}
+\cvitem{Tools}{Git, Google Colab, Matplotlib}
+\cvitem{Concepts}{Multithreading, Parallel Programming, Algorithm Design}
+
+
+% -----------------------------------------------------------------------
+\section{Projects}
+% -----------------------------------------------------------------------
+
+\cventry{2026--present}{Inspection Management API}{FastAPI · PostgreSQL · Docker · Pytest · GitHub Actions}{Berlin}{}{
+Production REST API for managing infrastructure inspections — damage reporting, severity classification, and repair status tracking.
+\begin{itemize}
+  \item Modular architecture with JWT authentication, per-user data isolation, and status lifecycle: reported $\rightarrow$ verified $\rightarrow$ scheduled $\rightarrow$ repaired
+  \item Advanced filtering, pagination, and sorting on all endpoints; companion frontend dashboard deployed on Vercel
+  \item 31 automated tests (Pytest); CI/CD via GitHub Actions; containerized with Docker; deployed on Render
+  \item \href{https://inspection-management-api.onrender.com/docs}{Live API Docs} $|$ \href{https://github.com/tiagorcfortunato/inspection-management-api}{GitHub}
+\end{itemize}}
+
+\cventry{2026}{Road Hazard Detection \& Prioritization — MSc Thesis}{YOLOv8 · PyTorch · Python · RDD2022}{Berlin}{}{
+Two-stage hybrid pipeline combining deep learning object detection with a rule-based expert system to detect road surface damage and automatically prioritize maintenance actions.
+\begin{itemize}
+  \item Conducted 4 controlled experiments (EXP1--EXP4) varying model capacity, resolution, and training length; best config (YOLOv8s): \textbf{mAP50 0.663, Precision 0.694, Recall 0.604}
+  \item Built a rule-based expert system with geometric filtering, continuous severity scoring, and quantile-based prioritization (LOW / MEDIUM / HIGH)
+  \item Post-processing reduced noisy detections by \textbf{31.2\%} (8{,}304 $\rightarrow$ 5{,}711) while preserving structurally relevant defects
+  \item Designed for interpretability: every prioritization decision traceable to explicit rules — no black boxes
+\end{itemize}}
+
+\cventry{2025}{Vehicle Health Monitor \& Fault Predictor}{Python · Pandas · Scikit-learn · Streamlit}{Berlin}{}{
+End-to-end ML pipeline analyzing vehicle sensor data (temperature, vibration, oil pressure, RPM) to predict failures before they occur.
+\begin{itemize}
+  \item Multi-stage pipeline: data generation $\rightarrow$ ETL $\rightarrow$ EDA $\rightarrow$ ML $\rightarrow$ live dashboard
+  \item Random Forest classifier with imbalanced data handling, achieving \textbf{99.9\% accuracy}
+  \item \href{https://github.com/tiagorcfortunato/Capstone_VehicleHealth}{GitHub}
+\end{itemize}}
+
+\cventry{2025}{Matrix Recommendation System with Multithreading}{Python · NumPy · Threading · Matplotlib}{Berlin}{}{
+Implemented S = U $\times$ P matrix scoring with normalization; benchmarked sequential vs.\ multithreaded execution, demonstrating threading tradeoffs at scale. \href{https://github.com/tiagorcfortunato/matrix-recommendation-multithread}{GitHub}}
+
+
+% -----------------------------------------------------------------------
+\section{Experience}
+% -----------------------------------------------------------------------
+
+\cventry{2024--2025}{Event Staff}{FARO Gruppe}{Berlin, Germany}{}{
+\begin{itemize}
+  \item Coordinated operations in high-paced event environments with strong attention to detail and reliability under pressure
+\end{itemize}}
+
+\cventry{2019--2024}{Project Manager}{Fortunato Joias — Family Jewelry \& Manufacturing}{Brazil}{}{
+\begin{itemize}
+  \item Managed production and operational projects for a family-owned jewelry company with in-house casting and manufacturing, founded in the 1970s
+  \item Coordinated production schedules, supplier relationships, and delivery deadlines across design-to-production cycles
+  \item Improved reporting and documentation systems to increase operational visibility and follow-up consistency
+\end{itemize}}
+
+\cventry{2018--2019}{Engineering Intern — Logistics \& Operations}{Metalúrgica Besser}{Rio de Janeiro, Brazil}{}{
+\begin{itemize}
+  \item Supported logistics routines and production planning; reduced delays through structured problem solving
+  \item Managed shipment priorities according to operational deadlines and constraints
+\end{itemize}}
+
+\cventry{2016--2018}{Co-Founder \& German Teacher}{Guide Idiomas}{Rio de Janeiro, Brazil}{}{
+\begin{itemize}
+  \item Co-founded a German language school; developed structured curricula and tracked student progress
+  \item Managed scheduling, customer communication, and day-to-day operations
+\end{itemize}}
+
+
+% -----------------------------------------------------------------------
+\section{Education}
+% -----------------------------------------------------------------------
+
+\cventry{2024--2026}{MSc Software Engineering}{University of Europe for Applied Sciences}{Berlin, Germany}{}{
+\begin{itemize}
+  \item Focus: Software Testing, Automation, and applied Machine Learning
+  \item Thesis: \textit{Expert System for Road Surface Hazard Detection} — YOLOv8-based detection pipeline combined with a rule-based prioritization expert system (RDD2022 dataset)
+\end{itemize}}
+
+\cventry{2022--2023}{Postgraduate — Railway Engineering}{Faculdade UniBF}{Brazil}{}{}
+
+\cventry{2021--2022}{Postgraduate — Automation Engineering \& Industrial Electronics}{Faculdade UniBF}{Brazil}{}{}
+
+\cventry{2014--2016}{Exchange Student — Mechanical Engineering}{Hochschule Wismar}{Germany}{}{
+\begin{itemize}
+  \item International academic exchange in Germany
+\end{itemize}}
+
+\cventry{2013--2018}{BSc Mechanical Engineering}{UERJ}{Rio de Janeiro, Brazil}{}{}
+
+
+% -----------------------------------------------------------------------
+\section{Languages}
+% -----------------------------------------------------------------------
+\cvitem{}{Portuguese (Native) · English (Fluent) · German (B2.2, improving)}
+
+\end{document}
