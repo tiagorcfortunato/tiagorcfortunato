@@ -36,13 +36,14 @@
 
 \begin{document}
 \makecvtitle
-\vspace{-4mm}
+\vspace{-6mm}
 
 % -----------------------------------------------------------------------
 \section{Profile}
 % -----------------------------------------------------------------------
-\cvitem{}{Full-Stack Developer and Founder of \textbf{Odys} (odys.com.br) — a WhatsApp-first scheduling SaaS for Brazilian freelance professionals, built entirely solo from architecture to production. I work across the full stack: Python/FastAPI for backend APIs, Next.js 16 + TypeScript for full-stack SaaS, Supabase + Drizzle ORM for data, Stripe for billing, and Docker + Railway + Vercel for deployment. Also build AI-integrated products using LangChain, ChromaDB, and RAG pipelines. MSc in Software Engineering (Berlin, 2026). Background in Mechanical Engineering — structured, systems-level thinking applied to software. Trilingual: Portuguese (native), English (fluent), German (B2). Available for Full-Stack or Backend Developer roles in Berlin or remote.}
+\cvitem{}{Full-Stack Developer and Founder of \textbf{Odys} (\href{https://odys.com.br}{odys.com.br}) — a live WhatsApp-first scheduling SaaS built entirely solo, from architecture to production. MSc Software Engineering, Berlin 2026. Background in Mechanical Engineering. Trilingual: Portuguese (native), English (fluent), German (B2). Available for Full-Stack or Backend Developer roles in Berlin or remote.}
 
+\vspace{-1mm}
 
 % -----------------------------------------------------------------------
 \section{Skills}
@@ -53,9 +54,9 @@
 \cvitem{SaaS \& Integrations}{Stripe (subscriptions, webhooks, PIX), Resend, Upstash Redis, WhatsApp via Evolution API v2}
 \cvitem{DevOps \& Deploy}{Docker, GitHub Actions, CI/CD, Railway, Vercel, Git}
 \cvitem{Testing}{Pytest, Postman}
-\cvitem{AI / ML}{LangChain, ChromaDB, RAG, Vector Search, YOLOv8, Scikit-learn, Pandas, PyTorch}
-\cvitem{AI Tools}{Claude Code, GitHub Copilot}
+\cvitem{AI / ML}{LangChain, ChromaDB, RAG, Vector Search, YOLOv8, Scikit-learn, Pandas, PyTorch, Claude Code}
 
+\vspace{-1mm}
 
 % -----------------------------------------------------------------------
 \section{Projects}
@@ -71,41 +72,27 @@ WhatsApp-first SaaS platform where clients book online and receive automatic Wha
 \end{itemize}}
 
 \cventry{2026}{RAG PDF Chatbot}{FastAPI · LangChain · ChromaDB · Groq · Docker}{Berlin}{}{
-Production-ready RAG application for contextual document Q\&A with source attribution. Deployed on Render.
-\begin{itemize}
-  \item Section-aware chunking via font-size analysis — detects headings to keep related content together
-  \item Conversation history support; every answer includes source attribution (section name and page number)
-  \item \href{https://rag-pdf-chatbot-0w9z.onrender.com}{Live Demo} $|$ \href{https://github.com/tiagorcfortunato/rag-pdf-chatbot}{GitHub}
-\end{itemize}}
+Section-aware PDF Q\&A with conversation history and source attribution (section + page number). Deployed on Render. \href{https://rag-pdf-chatbot-0w9z.onrender.com}{Live Demo} $|$ \href{https://github.com/tiagorcfortunato/rag-pdf-chatbot}{GitHub}}
 
 \cventry{2026}{Inspection Management API}{FastAPI · PostgreSQL · Docker · Pytest · GitHub Actions}{Berlin}{}{
-Production REST API for managing infrastructure inspections — damage reporting, severity classification, and repair status tracking.
+Production REST API for infrastructure inspection management with JWT auth, per-user isolation, and status lifecycle (reported $\rightarrow$ repaired).
 \begin{itemize}
-  \item JWT authentication, per-user data isolation, and status lifecycle: reported $\rightarrow$ verified $\rightarrow$ scheduled $\rightarrow$ repaired
-  \item 31 automated tests (Pytest); CI/CD via GitHub Actions; containerized with Docker; deployed on Render with live frontend dashboard
-  \item \href{https://inspection-management-api.onrender.com/docs}{Live API Docs} $|$ \href{https://github.com/tiagorcfortunato/inspection-management-api}{GitHub}
+  \item 31 Pytest tests; CI/CD via GitHub Actions; Docker; live on Render with frontend dashboard — \href{https://inspection-management-api.onrender.com/docs}{API Docs} $|$ \href{https://github.com/tiagorcfortunato/inspection-management-api}{GitHub}
 \end{itemize}}
 
 \cventry{2025--2026}{Road Hazard Detection \& Prioritization — MSc Thesis}{YOLOv8 · PyTorch · Python · RDD2022}{Berlin}{}{
-Two-stage hybrid pipeline combining deep learning object detection with a rule-based expert system for automated road maintenance prioritization.
+Deep learning detection pipeline combined with a rule-based expert system for automated road maintenance prioritization.
 \begin{itemize}
-  \item Best config (YOLOv8s): \textbf{mAP50 0.663, Precision 0.694, Recall 0.604} across 4 controlled experiments
-  \item Post-processing reduced noisy detections by \textbf{31.2\%} (8{,}304 $\rightarrow$ 5{,}711); every prioritization decision traceable to explicit rules
+  \item Best config (YOLOv8s): \textbf{mAP50 0.663, Precision 0.694, Recall 0.604}; post-processing reduced noisy detections by \textbf{31.2\%} — every decision traceable to explicit rules
 \end{itemize}}
-
 
 % -----------------------------------------------------------------------
 \section{Experience}
 % -----------------------------------------------------------------------
 
-\cventry{2026--present}{Founder \& Full-Stack Developer}{Odys}{Berlin, Germany}{}{
-\begin{itemize}
-  \item Sole developer of a live SaaS product — designed and shipped the full system from architecture to production deployment
-\end{itemize}}
-
 \cventry{2019--2024}{Project Manager}{Fortunato Joias — Jewelry \& Manufacturing}{Brazil}{}{
 \begin{itemize}
-  \item Owned production planning, supplier relationships, and delivery cycles for a family manufacturing business — five years of end-to-end operational ownership
+  \item Owned production planning, supplier relationships, and delivery cycles — five years of end-to-end operational ownership
 \end{itemize}}
 
 \cventry{2018--2019}{Engineering Intern — Logistics \& Operations}{Metalúrgica Besser}{Rio de Janeiro, Brazil}{}{
@@ -115,31 +102,22 @@ Two-stage hybrid pipeline combining deep learning object detection with a rule-b
 
 \cventry{2016--2018}{Co-Founder \& German Teacher}{Guide Idiomas}{Rio de Janeiro, Brazil}{}{
 \begin{itemize}
-  \item Co-founded a German language school; developed structured curricula and managed scheduling and customer operations
+  \item Co-founded a German language school; developed structured curricula and managed scheduling and operations
 \end{itemize}}
-
 
 % -----------------------------------------------------------------------
 \section{Education}
 % -----------------------------------------------------------------------
 
-\cventry{2024--2026}{MSc Software Engineering}{University of Europe for Applied Sciences}{Berlin, Germany}{}{
-\begin{itemize}
-  \item Focus: Software Testing, Automation, and applied Machine Learning
-  \item Thesis: \textit{Expert System for Road Surface Hazard Detection} — YOLOv8-based pipeline with rule-based prioritization (RDD2022)
-\end{itemize}}
+\cventry{2024--2026}{MSc Software Engineering}{University of Europe for Applied Sciences}{Berlin, Germany}{}{Thesis: \textit{Expert System for Road Surface Hazard Detection} — YOLOv8 pipeline with rule-based prioritization (RDD2022)}
 
 \cventry{2022--2023}{Postgraduate — Railway Engineering}{Faculdade UniBF}{Brazil}{}{}
 
 \cventry{2021--2022}{Postgraduate — Automation Engineering \& Industrial Electronics}{Faculdade UniBF}{Brazil}{}{}
 
-\cventry{2014--2016}{Exchange Student — Mechanical Engineering}{Hochschule Wismar}{Germany}{}{
-\begin{itemize}
-  \item International academic exchange in Germany
-\end{itemize}}
+\cventry{2014--2016}{Exchange Student — Mechanical Engineering}{Hochschule Wismar}{Germany}{}{}
 
 \cventry{2013--2018}{BSc Mechanical Engineering}{UERJ}{Rio de Janeiro, Brazil}{}{}
-
 
 % -----------------------------------------------------------------------
 \section{Languages}
