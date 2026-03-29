@@ -89,9 +89,12 @@ Deep learning detection pipeline combined with a rule-based expert system for au
 \section{Experience}
 % -----------------------------------------------------------------------
 
-\cventry{2026--present}{Founder \& Full-Stack Developer}{Odys}{Berlin, Germany}{}{
+\cventry{2026--present}{Founder \& Full-Stack Developer}{Odys · \href{https://odys.com.br}{odys.com.br}}{Berlin, Germany}{}{
 \begin{itemize}
-  \item Sole developer of a live SaaS product — designed and shipped the full system from architecture to production deployment
+  \item Founded and built a WhatsApp-first scheduling SaaS for Brazilian freelance professionals (therapists, personal trainers, salons) — sole developer across the full stack, from product design to production deployment
+  \item Designed multi-tenant architecture with plan-based feature limits, public booking pages per professional (\texttt{/p/[slug]}), and fully isolated tenant data
+  \item Integrated Stripe subscriptions + PIX, Supabase Auth, self-hosted WhatsApp API via Evolution API v2 on Railway, and automated reminder flows via Supabase \texttt{pg\_cron}
+  \item Implemented rate limiting (Upstash Redis), error monitoring (Sentry), transactional email (Resend), and CI/CD via GitHub Actions
 \end{itemize}}
 
 \cventry{2019--2024}{Project Manager}{Fortunato Joias — Jewelry \& Manufacturing}{Brazil}{}{
