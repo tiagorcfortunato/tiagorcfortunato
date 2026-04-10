@@ -52,7 +52,7 @@ Centralized hub for algorithm and data structure solutions, synchronized from Ne
 
 ## Contact
 
-- **Portfolio:** [www.tifortunato.com](https://www.tifortunato.com)
+- **Portfolio:** [tifortunato.com](https://tifortunato.com)
 - **Career Assistant chatbot:** [chatbot.tifortunato.com](https://chatbot.tifortunato.com)
 - **LinkedIn:** [linkedin.com/in/tiagorcfortunato](https://www.linkedin.com/in/tiagorcfortunato/)
 - **Email:** tifortunato.eng@gmail.com
