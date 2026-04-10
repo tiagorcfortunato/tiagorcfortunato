@@ -14,7 +14,7 @@ Multi-tenant SaaS scheduling platform for Brazilian freelance professionals, bui
 - **Infra:** Self-hosted WhatsApp messaging server (Evolution API v2) on Railway; reminder flows via Supabase pg_cron; CI/CD via GitHub Actions
 
 ### [AI Career Assistant](https://chatbot.tifortunato.com): Production RAG Chatbot
-Production RAG chatbot where recruiters ask questions about my background and get answers grounded in a curated knowledge base. [Live demo](https://chatbot.tifortunato.com) · [GitHub](https://github.com/tiagorcfortunato/rag-pdf-chatbot)
+Production RAG chatbot where recruiters ask questions about my background and get answers grounded in a curated knowledge base. [Live demo](https://chatbot.tifortunato.com) · [GitHub](https://github.com/tiagorcfortunato/ai-career-assistant)
 - **Hybrid retrieval:** semantic search + BM25 fused with Reciprocal Rank Fusion (RRF) for higher precision
 - **Custom section-aware chunking** via font-size analysis to keep semantically related content together
 - **Streaming SSE responses** via Groq (Llama 3.1) with conversation history and follow-up suggestions
