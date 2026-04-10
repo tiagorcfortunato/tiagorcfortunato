@@ -1,5 +1,5 @@
 # Tiago Fortunato
-**Product Engineer · AI Applications · SaaS · Berlin**
+**AI Application Engineer · Product Engineer · SaaS · Berlin**
 
 Shipping AI-powered products end-to-end with LLMs, RAG, and modern web stacks. Founder of [Odys](https://odys.com.br), a live multi-tenant SaaS. Builder of production RAG and Vision AI systems on FastAPI. MSc Software Engineering, Berlin 2026. Trilingual (Portuguese, English, German B2.2).
 
@@ -48,7 +48,7 @@ Centralized hub for algorithm and data structure solutions, synchronized from Ne
 
 ## Open to
 
-**Product Engineer**, **AI Engineer**, **Solutions Engineer**, or **Founding Engineer** roles. Berlin or remote.
+**AI Application Engineer**, **Product Engineer**, **AI Engineer**, **Solutions Engineer**, or **Founding Engineer** roles. Berlin or remote.
 
 ## Contact
 
